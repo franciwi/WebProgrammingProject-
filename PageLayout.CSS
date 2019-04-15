@@ -3,7 +3,7 @@
 
 		body{
 			margin: 0;
-			background-color: #4B5043;
+			background-color: #aac0aa;
 			font-family: 'Work Sans', sans-serif;
 			font-weight: 800;
 			}
@@ -32,7 +32,7 @@
 		/*header background color*/
 		header{
 
-			background: #9BC4BC;
+			background: #dceed1;
 		}
 		/*clear screen over header*/
 		header::after {
@@ -69,7 +69,7 @@
 		}
 
 		nav a{
-			color: #090909;
+			color: #736372;
 			text-decoration: none;
 			text-transform: uppercase;
 			font-size: 14px;
@@ -89,7 +89,7 @@
 			display: block;
 			height: 5px;
 
-			background-color: #090909;
+			background-color: #736372;
 
 			position: absolute;
 			top: 0;
