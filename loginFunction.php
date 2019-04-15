@@ -39,6 +39,10 @@ while($row = mysqli_fetch_array($result))
 
 			}
 
+			else{
+			die("The password was incorect");
+			 }
+
 }
 
 # free result set
@@ -52,4 +56,4 @@ mysqli_close($con);
 
 </body>
 
-</html>>
+</html>
