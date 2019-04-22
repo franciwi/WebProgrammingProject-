@@ -111,13 +111,20 @@
 			position: fixed;
 			bottom: 20px;
 			right: 30px;
+			width: :200px;
+			height: 160px;
 			z-index: 99;
-			border: solid;
+		
 			outline: none;
-			cursor: pointer;\
+			cursor: pointer;
+			
 			background: url(logo2.png);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+
 			color: white;
-			padding: 15px;
+			padding: 65px;
 			font-size: 37px;
 		}
 		

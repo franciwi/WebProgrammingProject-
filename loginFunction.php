@@ -12,12 +12,13 @@
 
 <?php
 include "dbconfig.php";
+
 $con=mysqli_connect($server, $username, $dbpassword, $dbname)
 	or die ("conection fail!");
 
 
 # Execute the SQL query and return records
-$query = "SELECT * FROM CPS3740.Users ; ";
+$query = "SELECT * FROM games.users ; ";
 
 #echo "<br>query: $query\n";
 $result = mysqli_query($con, $query);
@@ -28,8 +29,8 @@ $result = mysqli_query($con, $query);
 while($row = mysqli_fetch_array($result))
 {	
 
-	#echo "fname:" . $row['fname'] . "\n";
-	#echo "lname:" . $row['lname'] . "\n";
+	#echo "fname:" . $row['first_name'] . "\n";
+	#echo "lname:" . $row['last_name'] . "\n";
 	#Authentication
 			if(strtolower($_POST['username']) == $row['login'] && $_POST['password'] == $row['password'] )
 			{

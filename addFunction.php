@@ -1,15 +1,19 @@
 <?php
-error_reporting(0);
-$name=$_GET['name']; 
-$genre=$_GET['genre'];
-$rating=$_GET['rating'];
-$price=$_GET['price'];
-$name_err = ""; 
-$genre_err = "";
-$rating_err = "";
-$price_err = "";
 
-	$link = new mysqli($servername, $myusername, $mypassword, $dbname_2) 
+	error_reporting(0);
+	$name=$_GET['name']; 
+	$genre=$_GET['genre'];
+	$rating=$_GET['rating'];
+	$price=$_GET['price'];
+	$name_err = ""; 
+	$genre_err = "";
+	$rating_err = "";
+	$price_err = "";
+
+
+
+	include "dbconfig.php";
+	$link = new mysqli($server, $username, $dbpassword, $dbname) 
 	or die("Could not connect to the Database " .mysqli_error());
 
 	if(empty($_GET["name"])){ 
@@ -52,13 +56,16 @@ $price_err = "";
 		
         $price = ($_GET["price"]); 
     }
+
+
+
 	
 	if(!empty($name) and !empty($genre) and !empty($rating) and !empty($price)){ 
 	
-		$link = new mysqli($servername, $myusername, $mypassword, $dbname_2) 
+		$link = new mysqli($server, $username, $dbpassword, $dbname) 
 		or die("Could not connect to the Database " .mysqli_error());
 	
-		$query_main="select * from Products_churleyc where name='$name'";; 
+		$query_main="select * from games.products where name='$name'";; 
 		$err=mysqli_query($link, $query_main);
 		if(mysqli_num_rows($err)>0) {	
 		
@@ -68,7 +75,7 @@ $price_err = "";
 	
 		else{
 		
-			$query= "insert into Products_churleyc (title, genre, rating, price)
+			$query= "insert into games.products (title, genre, rating, price)
 			values ('$name', '$genre', '$rating', '$price')";
 		
 			$results=mysqli_query($link, $query);
