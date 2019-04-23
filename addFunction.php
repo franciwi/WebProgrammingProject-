@@ -105,10 +105,10 @@
 
 		<nav>
 		<ul>
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Search Products</a></li>
-			<li><a href="#">Add/Remove Products</a></li>
-			<li><a href="#">Sign Out</a>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="searchFunction.php">Search Products</a></li>
+			<li><a href="addFunction.php">Add/Remove Products</a></li>
+			<li><a href="login.html">Sign Out</a>
 				<ul>
 
 				</ul>
@@ -141,7 +141,7 @@
 	
 	<div <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>>
     <label>Rating:</label>
-    <input type="number" name="rating">
+    <input type="text" name="rating">
     <span ><?php echo $rating_err; ?></span>
     </div>
 	
