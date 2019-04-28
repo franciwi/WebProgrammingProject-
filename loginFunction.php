@@ -13,34 +13,38 @@
 <?php
 include "dbconfig.php";
 
-$con=mysqli_connect($server, $username, $dbpassword, $dbname)
+$con  =mysqli_connect($server, $username, $dbpassword, $dbname)
 	or die ("conection fail!");
 
 
 # Execute the SQL query and return records
-$query = "SELECT * FROM games.users ; ";
+$query = "SELECT * FROM games.users  ; ";
 
 #echo "<br>query: $query\n";
 $result = mysqli_query($con, $query);
 
 # Fetch the data from the database, one row
-;
+
 
 while($row = mysqli_fetch_array($result))
 {	
 
-	#echo "fname:" . $row['first_name'] . "\n";
-	#echo "lname:" . $row['last_name'] . "\n";
+	echo "login:" . $row['first_name'] . "\n";
+	echo "password:" . $row['last_name'] . "\n";
 	#Authentication
+
+
 			if(strtolower($_POST['username']) == $row['login'] && $_POST['password'] == $row['password'] )
 			{
 
 
-				header("location: index.html");
+				header("location: index.php");
 
 			}
 
 			else{
+
+
 			die("The password was incorect");
 			 }
 

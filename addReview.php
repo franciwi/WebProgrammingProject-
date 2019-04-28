@@ -5,10 +5,22 @@
 	$genre=$_GET['genre'];
 	$rating=$_GET['rating'];
 	$price=$_GET['price'];
+
+
+
+
+	$review=$_GET['review'];
+
+
 	$name_err = ""; 
 	$genre_err = "";
 	$rating_err = "";
 	$price_err = "";
+
+
+
+	$review_err = "";
+
 
 
 
@@ -51,6 +63,8 @@
 		
         $price_err = 'Price is invalid'; 
     } 
+
+    
 	
 	else{
 		
@@ -59,13 +73,27 @@
 
 
 
+
+
+
+    if($_GET["review"]<0){ 
+		
+        $price_err = 'review is invalid'; 
+    } 
+
+
+
 	
-	if(!empty($name) and !empty($genre) and !empty($rating) and !empty($price)){ 
+	if(!empty($review) ){ 
 	
 		$link = new mysqli($server, $username, $dbpassword, $dbname) 
 		or die("Could not connect to the Database " .mysqli_error());
 	
 		$query_main="select * from games.products where name='$name'";; 
+
+
+
+
 		$err=mysqli_query($link, $query_main);
 		if(mysqli_num_rows($err)>0) {	
 		
@@ -74,13 +102,29 @@
 		}
 	
 		else{
-		
+
+
+		$query3 = " UPDATE games.products SET review = '$review' WHERE title = '$name' " ; 
+
+
+		 
 			$query= "insert into games.products (title, genre, rating, price)
 			values ('$name', '$genre', '$rating', '$price')";
+
+
+
 		
-			$results=mysqli_query($link, $query);
-			header ("location: index.html");
+			$results=mysqli_query($link, $query3);
+			header ("location: index.php");
 			exit();
+
+
+
+
+
+
+
+
 		}
 	}
 
@@ -93,7 +137,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Index Page</title>
+	<title>Add Review</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="PageLayout.css">
 	<script src="JS_Functions.js"></script>
@@ -130,48 +174,59 @@
 	</form>
 	
 	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
-	
-    <div <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>>
+
+
+ 	<div <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>>
     <label>Product Name:</label>
-    <input type="text" name="name" value="<?php echo $name; ?>" 
-    <span > <?php echo $name_err; ?></span>
-    </div>    
-            
-	<div <?php echo (!empty($genre_err)) ? 'has-error' : ''; ?>>
-    <label>Genre:</label>
+
    
-    <select name="genre">
-      <option value="">none</option>
-	  <option value="FPS">FirstPersonShooter</option>
-	  <option value="RTS">RealTimeStrategy</option>
-	  <option value="MMO">MassivelyMulitplayerOnline</option>
-	  <option value="RPG">RolePlayGaame</option>
-	  <option value="MOBA"> MultiplayerOnlineBattleArena</option>
-	  <option value="MMORPG"> MassivelyMultiplayerOnlineRolePlayingGames</option>
+
+
+     <select name="name">
+      <option value="Zombies">Zombies</option>
+	  <option value="ModerWarfare">ModerWarfare</option>
+	  <option value="SpongeCubeAdveture">SpongeCubeAdveture</option>
+	  <option value="SpaceFightOnline">SpaceFightOnline</option>
+	  <option value="FarmerTown">FarmerTown</option>
+
+	 
 	</select>
-    <span ><?php echo $genre_err; ?></span>
-    </div>
+
+
+
+    <span > <?php echo $name_err; ?></span>
+    </div>   
 	
-	<div <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>>
-    <label>Rating:</label>
+
+
+
+
+
+
+    <div <?php echo (!empty($review_err)) ? 'has-error' : ''; ?>>
+    <label>Product Review:</label>
+
     
-     <select name="rating">
-      <option value="">none</option>
-	  <option value="E">Everyone</option>
-	  <option value="T">Teen</option>
-	  <option value="M">Mature17+</option>
-	  <option value="A">AdultsOnly18+</option>
-	  <option value="RP"> Rating Pending</option>
-	  <option value="ec"> EarlyChildHood</option>
-	</select>
-    <span ><?php echo $rating_err; ?></span>
-    </div>
+
+    <div class="slidecontainer">
+
+
+
+  <input type="range" name="review"  min="0" max="100" value="50" class="slider" id="myRange">
+  
+</div>
+
+
+
+    <span > <?php echo $review_err; ?></span>
+    </div> 
+
+
 	
-	<div <?php echo (!empty($price_err)) ? 'has-error' : ''; ?>>
-    <label>Price:</label>
-    <input type="number" name="price">
-    <span ><?php echo $price_err; ?></span>
-    </div>
+
+
+
+   
 	
     <div>
     <input type="submit" value="Submit">
