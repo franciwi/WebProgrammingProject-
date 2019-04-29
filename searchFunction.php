@@ -19,9 +19,8 @@ error_reporting(0);
 
 		<nav>
 		<ul>
-			<li><a href="index.html">Home</a></li>
-			<li><a href="searchFunction.php">Search Products</a></li>
-			<li><a href="addFunction.php">Add/Remove Products</a></li>
+			<li><a href="index_Gamer.php">Home</a></li>
+		
 			<li><a href="login.html">Sign Out</a>
 				<ul>
 
@@ -31,7 +30,7 @@ error_reporting(0);
 
 	</header>
 	
-	<button onclick="toTop()" id="button" style="background: url(logo2.png)" title="Go to top">Top</button>
+	<button onclick="toTop()" id="button" title="Go to top"></button>
 
 <br>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">

@@ -2,23 +2,10 @@
 
 	error_reporting(0);
 	$name=$_GET['name']; 
-	$genre=$_GET['genre'];
-	$rating=$_GET['rating'];
-	$price=$_GET['price'];
-
-
-
-
 	$review=$_GET['review'];
 
 
 	$name_err = ""; 
-	$genre_err = "";
-	$rating_err = "";
-	$price_err = "";
-
-
-
 	$review_err = "";
 
 
@@ -27,6 +14,8 @@
 	include "dbconfig.php";
 	$link = new mysqli($server, $username, $dbpassword, $dbname) 
 	or die("Could not connect to the Database " .mysqli_error());
+
+
 
 	if(empty($_GET["name"])){ 
 		
@@ -38,38 +27,6 @@
         $name = ($_GET["name"]); 
     }
 	
-	
-	if(empty($_GET["genre"])){ 
-		
-        $genre_err = 'Product genre is invalid';
-    } 
-	
-	else{
-		
-        $genre = ($_GET["genre"]); 
-    }
-	
-	if(empty($_GET["rating"])){ 
-		
-        $rating_err = 'Rating is invalid'; 
-    } 
-	
-	else{
-		
-        $rating = ($_GET["rating"]); 
-    }
-	
-	if($_GET["price"]<0){ 
-		
-        $price_err = 'Price is invalid'; 
-    } 
-
-    
-	
-	else{
-		
-        $price = ($_GET["price"]); 
-    }
 
 
 
@@ -80,6 +37,11 @@
 		
         $price_err = 'review is invalid'; 
     } 
+
+    else{
+		
+        $review = ($_GET["review"]); 
+    }
 
 
 
@@ -104,28 +66,13 @@
 		else{
 
 
-		$query3 = " UPDATE games.products SET review = '$review' WHERE title = '$name' " ; 
+		     $query = " UPDATE games.products SET review = '$review' WHERE title = '$name' " ; 
 
 
-		 
-			$query= "insert into games.products (title, genre, rating, price)
-			values ('$name', '$genre', '$rating', '$price')";
-
-
-
-		
-			$results=mysqli_query($link, $query3);
-			header ("location: index.php");
-			exit();
-
-
-
-
-
-
-
-
-		}
+			 $results=mysqli_query($link, $query);
+			 header ("location: index_Gamer.php");
+			 exit();
+		     }
 	}
 
 ?>
@@ -153,9 +100,8 @@
 
 		<nav>
 		<ul>
-			<li><a href="index.html">Home</a></li>
-			<li><a href="searchFunction.php">Search Products</a></li>
-			<li><a href="addFunction.php">Add/Remove Products</a></li>
+			<li><a href="index_Gamer.php">Home</a></li>
+			
 			<li><a href="login.html">Sign Out</a>
 				<ul>
 
@@ -165,9 +111,10 @@
 
 	</header>
 	
-	<button onclick="toTop()" id="button" style="background: url(logo2.png)" title="Go to top">Top</button>
+	<button onclick="toTop()" id="button" title="Go to top"></button>
 <div>	
-<h1>Add Products</h1>
+<h1>Review Games</h1>
+
 
 <br>
 	
@@ -188,6 +135,7 @@
 	  <option value="SpongeCubeAdveture">SpongeCubeAdveture</option>
 	  <option value="SpaceFightOnline">SpaceFightOnline</option>
 	  <option value="FarmerTown">FarmerTown</option>
+	   <option value="GrandLacerny7">GrandLacerny7</option>
 
 	 
 	</select>

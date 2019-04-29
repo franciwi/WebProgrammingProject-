@@ -29,8 +29,8 @@ $result = mysqli_query($con, $query);
 while($row = mysqli_fetch_array($result))
 {	
 
-	echo "login:" . $row['first_name'] . "\n";
-	echo "password:" . $row['last_name'] . "\n";
+	#echo "login:" . $row['first_name'] . "\n";
+	#echo "password:" . $row['last_name'] . "\n";
 	#Authentication
 
 
@@ -38,15 +38,30 @@ while($row = mysqli_fetch_array($result))
 			{
 
 
-				header("location: index.php");
+				if($row['role']=='admin')
+				{
+				   header("location: index_Admin.php");
+				 }
+
+				 if($row['role'] ==  'gamer')
+				 {
+
+				 	header("location: index_Gamer.php");
+				 }
+
+
+
+
+
 
 			}
 
-			else{
+			elseif (strtolower($_POST['username']) == $row['login'] && $_POST['password'] != $row['password'] ) {
+				echo "The password is incorrect";
+				echo "<br>";
+			}
 
-
-			die("The password was incorect");
-			 }
+			
 
 }
 

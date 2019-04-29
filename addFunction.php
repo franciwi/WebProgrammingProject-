@@ -79,7 +79,7 @@
 			values ('$name', '$genre', '$rating', '$price')";
 		
 			$results=mysqli_query($link, $query);
-			header ("location: index.html");
+			header ("location: index_Gamer.php");
 			exit();
 		}
 	}
@@ -121,7 +121,7 @@
 
 	</header>
 	
-	<button onclick="toTop()" id="button" style="background: url(logo2.png)" title="Go to top">Top</button>
+	<button onclick="toTop()" id="button" title="Go to top"></button>
 <div>	
 <h1>Add Products</h1>
 
